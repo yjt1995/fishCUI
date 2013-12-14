@@ -37,8 +37,8 @@ class fish
 	    bool increaseArmor(); //增加Armor属性
 	    //以上函数由系统实现，供AI调用进行决策
 
-	    fish():identifier(0) {point=10;level=1;exp=0;x=0;y=0;hp=0;maxhp=0;att=0;sp=0;ar=0;id=0;cd=0;survive=true;}
-	    virtual ~fish(){delete _identifier;}//AI析构函数
+	    fish():Identifier(0) {point=10;level=1;exp=0;x=0;y=0;hp=0;maxhp=0;att=0;sp=0;ar=0;id=0;cd=0;survive=true;}
+	    virtual ~fish(){delete Identifier;}//AI析构函数
 	    virtual void init() = 0;//初始化函数，每一局重新开始将调用
 	    virtual void play() = 0;//行动函数，每回合行动将调用
 	    virtual void revive(int&,int&) = 0;//复活时调用，参数传回选择复活位置（若不合法则随机）
