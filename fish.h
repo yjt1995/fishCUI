@@ -3,16 +3,18 @@
 
 #include <cstring>
 #include "constants.h"
-#include "syst.h"
+#include "env.h"
 
 class fish
 {
+	friend env;
 	private:
+		static env& host;
 		char* Identifier;
-		int point=10,level=1,exp=0,x=0,y=0,hp=0,maxhp=0,att=0,sp=0,ar=0,id=0;
+		int point,level,exp,x,y,hp,maxhp,att,sp,ar,id,cd;
+		bool survive;
 	public:
 		void setIdentifier(const char*);//设置AI标识符（作者学号）
-	    const char* getIdentifier() const;//获取AI标识符
     	int getPoint() const;//返回当前玩家剩余点数
 	    int getLevel() const;//返回当前玩家等级
     	int getExp() const;//返回当前玩家经验
@@ -35,7 +37,7 @@ class fish
 	    bool increaseArmor(); //增加Armor属性
 	    //以上函数由系统实现，供AI调用进行决策
 
-	    fish():identifier(0) {}
+	    fish():identifier(0) {point=10;level=1;exp=0;x=0;y=0;hp=0;maxhp=0;att=0;sp=0;ar=0;id=0;cd=0;survive=true;}
 	    virtual ~fish(){delete _identifier;}//AI析构函数
 	    virtual void init() = 0;//初始化函数，每一局重新开始将调用
 	    virtual void play() = 0;//行动函数，每回合行动将调用
