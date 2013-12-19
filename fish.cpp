@@ -1,66 +1,66 @@
 #include "fish.h"
 
-inline void fish::setIdentifier(const char *p)//设置AI标识符（作者学号）
+void fish::setIdentifier(const char *p)//设置AI标识符（作者学号）
 {
-	return p;
+	Identifier=p;
 }
 
-inline int fish::getPoint() const//返回当前玩家剩余点数
+int fish::getPoint() const//返回当前玩家剩余点数
 {
 	return point;
 }
 
-inline int fish::getLevel() const//返回当前玩家等级
+int fish::getLevel() const//返回当前玩家等级
 {
 	return level;
 }
 
-inline int fish::getExp() const//返回当前玩家经验
+int fish::getExp() const//返回当前玩家经验
 {
 	return exp;
 }
 
-inline int fish::getX() const//返回当前玩家横坐标
+int fish::getX() const//返回当前玩家横坐标
 {
 	return x;
 }
 
-inline int fish::getY() const//返回当前玩家纵坐标
+int fish::getY() const//返回当前玩家纵坐标
 {
 	return y;
 }
 
-inline int fish::getHP() const//返回当前玩家生命值
+int fish::getHP() const//返回当前玩家生命值
 {
 	return hp;
 }
- 
-inline int fish::getMaxHP() const//返回当前玩家生命上限
+
+int fish::getMaxHP() const//返回当前玩家生命上限
 {
 	return maxhp;
 }
 
-inline int fish::getAtt() const//返回当前玩家攻击力
+int fish::getAtt() const//返回当前玩家攻击力
 {
 	return att;
 }
 
-inline int fish::getSp() const//返回当前玩家速度
+int fish::getSp() const//返回当前玩家速度
 {
 	return sp;
 }
 
-inline int fish::getAr() const//返回当前玩家护甲
+int fish::getAr() const//返回当前玩家护甲
 {
 	return ar;
 }
 
-inline int fish::getID() const//获取玩家ID
+int fish::getID() const//获取玩家ID
 {
 	return id;
 }
 
-inline int fish::getTotalPlayer() const//获取玩家总人数
+int fish::getTotalPlayer() const//获取玩家总人数
 {
 	return host.getTotalPlayer();
 }

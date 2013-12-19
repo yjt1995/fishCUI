@@ -1,0 +1,97 @@
+# depslib dependency file v1.0
+1387362025 source:c:\users\Ò¦¾©èº\documents\github\fishcui\env.cpp
+	"env.h"
+	"fish.h"
+
+1387201220 c:\users\Ò¦¾©èº\documents\github\fishcui\env.h
+	<cstdlib>
+	<ctime>
+	<iostream>
+	<iomanip>
+	<algorithm>
+	"constants.h"
+
+1387285207 c:\users\Ò¦¾©èº\documents\github\fishcui\constants.h
+
+1387289666 c:\users\Ò¦¾©èº\documents\github\fishcui\fish.h
+	<cstring>
+	"constants.h"
+	"env.h"
+
+1387196593 source:c:\users\Ò¦¾©èº\documents\github\fishcui\fish.cpp
+	"fish.h"
+
+1387368449 source:c:\users\Ò¦¾©èº\documents\github\fishcui\main.cpp
+	"env.h"
+	"fish.h"
+	"TAAI.h"
+	"TAAI_HARD.h"
+	"TAAI_LUNATIC.h"
+	"TAAI_CRAZY.h"
+	"st26.h"
+	"st24.h"
+	"st04.h"
+	"st18.h"
+
+1383646199 c:\users\Ò¦¾©èº\documents\github\fishcui\taai.h
+	"fish.h"
+	"cstdlib"
+
+1383647506 c:\users\Ò¦¾©èº\documents\github\fishcui\taai_hard.h
+	"fish.h"
+	<cstdlib>
+
+1383652906 c:\users\Ò¦¾©èº\documents\github\fishcui\taai_lunatic.h
+	"fish.h"
+
+1383710327 c:\users\Ò¦¾©èº\documents\github\fishcui\taai_crazy.h
+	"fish.h"
+	<cstdlib>
+
+1385801736 c:\users\Ò¦¾©èº\documents\github\fishcui\st26.h
+	"fish.h"
+	"cstdlib"
+
+1385797140 c:\users\Ò¦¾©èº\documents\github\fishcui\st24.h
+	"fish.h"
+	"cstdlib"
+
+1387366330 source:c:\users\Ò¦¾©èº\documents\github\fishcui\st24.cpp
+	"st24.h"
+	<cstdio>
+	<iostream>
+
+1387363587 source:c:\users\Ò¦¾©èº\documents\github\fishcui\st26.cpp
+	"st26.h"
+	<cstdio>
+	<cmath>
+
+1387286387 source:c:\users\Ò¦¾©èº\documents\github\fishcui\taai.cpp
+	"TAAI.h"
+	<cstdio>
+
+1387366669 c:\users\Ò¦¾©èº\documents\github\fishcui\st04.h
+	"fish.h"
+	"cstdlib"
+
+1387366671 c:\users\Ò¦¾©èº\documents\github\fishcui\st18.h
+	"fish.h"
+	"cstdlib"
+
+1387366662 source:c:\users\Ò¦¾©èº\documents\github\fishcui\st04.cpp
+	"st04.h"
+	<cstdio>
+	<cstring>
+	<algorithm>
+	<ctime>
+
+1387366673 source:c:\users\Ò¦¾©èº\documents\github\fishcui\st18.cpp
+	"st18.h"
+	<cstdio>
+	<cstring>
+	<algorithm>
+	<cmath>
+	<ctime>
+	<cstdlib>
+	<algorithm>
+

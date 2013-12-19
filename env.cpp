@@ -1,8 +1,9 @@
 #include "env.h"
+#include "fish.h"
 
-env()
+env::env()
 {
-	totalPlayer=0;
+	totalplayer=0;
 	for (int i=0;i<=N;++i)
 		for (int j=0;j<=M;++j)
 			tankmap[i][j]=EMPTY;
@@ -10,34 +11,34 @@ env()
 		sequence[i]=0;
 }
 
-~env()
+env::~env()
 {
-	for (int i=1;i<=totalPlayer;++i)
-		delete player[i];
+	for (int i=1;i<=totalplayer;++i)
+		{std::cout<<"1"<<std::endl;delete player[i];std::cout<<"2"<<std::endl;}
 }
 
 bool env::addAI(fish* newplayer)
 {
-	totalPlayer++;
-	if (totalPlayer>MAX_PLAYER)
+	totalplayer++;
+	if (totalplayer>MAX_PLAYER)
 	{
-		totalPlayer--;
+		totalplayer--;
 		return false;
 	}
 	else
 	{
-		player[totalPlayer]=newplayer;
+		player[totalplayer]=newplayer;
+		player[totalplayer]->id=totalplayer;
 		return true;
 	}
-	player[totalPlayer]->id=totalPlayer;
 }
 
 void env::play()
 {
 	srand(time(NULL));
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 		arrangePosition(i);
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 		player[i]->init();
 	createFood();
 	for (int i=1;i<=MAX_ROUND;++i)
@@ -45,7 +46,7 @@ void env::play()
 	printResult();
 }
 
-void env::arangePosition(int newplayer)
+void env::arrangePosition(int newplayer)
 {
 	int ax=rand()%N+1,ay=rand()%M+1;
 	while (tankmap[ax][ay]!=EMPTY)
@@ -76,29 +77,29 @@ void env::createFood()
 	}
 }
 
-void env::round(int x);
+void env::round(int x)
 {
 	if (x%FOOD_ROUND==0) createFood();
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 		if (player[i]->survive)
 		{
 			player[i]->exp++;
 			upgrade(i);
 		}
 	actionSort();
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 		if (player[sequence[i]]->survive)
-			player[sequence[i]]->play();
+			{std::cout<<i<<"play"<<std::endl;player[sequence[i]]->play();std::cout<<i<<"playend"<<std::endl;}
 			else
 			{
 				if (player[sequence[i]]->cd>0)
 					player[sequence[i]]->cd--;
 					else
-					{
+					{//std::cout<<"d1"<<std::endl;
 						player[sequence[i]]->survive=true;
-						player[sequence[i]]->hp=max(2,player[sequence[i]]->maxhp/4);
+						player[sequence[i]]->hp=std::max(2,player[sequence[i]]->maxhp/4);
 						int rx=0,ry=0;
-						revive(rx,ry);
+						player[sequence[i]]->revive(rx,ry);
 						if ((rx<1)||(ry<1)||(rx>N)||(ry>M))
 						{
 							rx=rx%N+1;
@@ -109,31 +110,32 @@ void env::round(int x);
 							rx=rand()%N+1;
 							ry=rand()%M+1;
 						}
-						tankmap[rx][ry]=newplayer;
-						player[newplayer]->x=rx;
-						player[newplayer]->y=ry;
+						tankmap[rx][ry]=sequence[i];
+						player[sequence[i]]->x=rx;
+						player[sequence[i]]->y=ry;
+						//std::cout<<"d1"<<std::endl;
 						player[sequence[i]]->play();
 					}
 			}
-	cout<<"round "<<x<<endl; 
+	std::cout<<"round "<<x<<std::endl;
 }
 
-void env::actionSort();
+void env::actionSort()
 {
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 		t[i]=true;
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 	{
 		int fastPlayer=0;
-		for (int j=1;j<=totalPlayer;++j)
+		for (int j=1;j<=totalplayer;++j)
 			if ((t[j])&&((fastPlayer==0)||(bigthan(j,fastPlayer))))
 				fastPlayer=j;
-		sequence[i]=j;
-		t[j]=false;
+		sequence[i]=fastPlayer;
+		t[fastPlayer]=false;
 	}
 }
 
-void env::bigthan(int aplayer,int bplayer)
+bool env::bigthan(int aplayer,int bplayer)
 {
 	if ((player[aplayer]->sp>player[bplayer]->sp)||((player[aplayer]->sp==player[bplayer]->sp)&&(player[aplayer]->hp<player[bplayer]->hp))
 	||((player[aplayer]->sp==player[bplayer]->sp)&&(player[aplayer]->hp==player[bplayer]->hp)&&(player[aplayer]->level<player[bplayer]->level))
@@ -142,7 +144,7 @@ void env::bigthan(int aplayer,int bplayer)
 		else return false;
 }
 
-void env::getscore(int aplayer)
+int env::getscore(int aplayer)
 {
 	return player[aplayer]->level*(player[aplayer]->level+1)/2+1+player[aplayer]->exp+player[aplayer]->kill*5-player[aplayer]->killed*player[aplayer]->killed/5;
 }
@@ -161,7 +163,7 @@ bool env::upgrade(int aplayer)
 
 int env::getTotalPlayer()
 {
-	return totalPlayer;
+	return totalplayer;
 }
 
 int env::getMap(int mx,int my)
@@ -171,44 +173,49 @@ int env::getMap(int mx,int my)
 
 int env::getHP(int aplayer)
 {
-	return player[aplayer]->hp; 
+	return player[aplayer]->hp;
 }
 
 bool env::move(int aplayer,int mx,int my)
-{
+{std::cout<<"m"<<aplayer<<std::endl;
+	if (mx<1 || mx>N || my<1 || my>M) {std::cout<<"mend"<<aplayer<<std::endl;return false;}
 	if ((tankmap[mx][my]!=EMPTY)||(abs(player[aplayer]->x-mx)+abs(player[aplayer]->y-my)>player[aplayer]->sp))
-		return false;
+		{std::cout<<"mend"<<aplayer<<std::endl;return false;}
 		else
 		{
 			tankmap[player[aplayer]->x][player[aplayer]->y]=EMPTY;
 			player[aplayer]->x=mx;
 			player[aplayer]->y=my;
 			tankmap[mx][my]=aplayer;
+			std::cout<<"mend"<<aplayer<<std::endl;
 			return true;
 		}
 }
 
 bool env::attack(int aplayer,int ax,int ay)
 {
-	if ((tankmap[mx][my]==EMPTY)||(abs(player[aplayer]->x-mx)+abs(player[aplayer]->y-my)>1))
+	if (ax<1 || ax>N || ay<1 || ay>M) return false;
+	if ((tankmap[ax][ay]==EMPTY)||(abs(player[aplayer]->x-ax)+abs(player[aplayer]->y-ay)>1))
 		return false;
 		else
 		{
-			if (tankmap[mx][my]==FOOD)
+			if (tankmap[ax][ay]==FOOD)
 			{
 				if (player[aplayer]->att>0)
 				{
 					player[aplayer]->exp++;
+					tankmap[ax][ay]=EMPTY;
 					upgrade(aplayer);
-					player[aplayer]->hp+=min(max(2,player[aplayer]->maxhp/4),maxhp-hp);
+					player[aplayer]->hp+=std::min(std::max(2,player[aplayer]->maxhp/4),player[aplayer]->maxhp-player[aplayer]->hp);
 				}
 			}
 			else
-			{
-				int bplayer=tankmap[mx][my];
+			{std::cout<<aplayer<<"a"<<std::endl;
+				int bplayer=tankmap[ax][ay];
+				tankmap[ax][ay]=EMPTY;
 				double armor=player[bplayer]->ar;
-				int bleed=max(1,(int)(player[aplayer]->att*(1-armor/(10+armor))));
-				player[bplayer]->hp-=min(bleed,player[bplayer]->hp);
+				int bleed=std::max(1,(int)(player[aplayer]->att*(1-armor/(10+armor))));
+				player[bplayer]->hp-=std::min(bleed,player[bplayer]->hp);
 				if (player[bplayer]->hp==0)
 				{
 					player[bplayer]->survive=false;
@@ -218,35 +225,36 @@ bool env::attack(int aplayer,int ax,int ay)
 					player[bplayer]->cd=2;
 					player[bplayer]->killed++;
 					player[aplayer]->kill++;
-					player[aplayer]->exp+=max(1,player[bplayer]->level/2);
+					player[aplayer]->exp+=std::max(1,player[bplayer]->level/2);
 					if (player[aplayer]->level<player[bplayer]->level) player[aplayer]->exp+=3*(player[bplayer]->level-player[aplayer]->level);
 					bool tt=upgrade(aplayer);
-					while (tt) upgrade(aplayer);
-				}
+					while (tt) tt=upgrade(aplayer);
+				}std::cout<<aplayer<<"a"<<bplayer<<std::endl;
 			}
-			return true;
+            return true;
 		}
 }
 
 void env::printResult()
 {
 	scoreSort();
-	cout<<setw(6)<<"ID"<<setw(4+7)<<"Score"<<stew(4)<<"Lv"<<stew(5)<<"HP"<<setw(6)<<"MaxHP"<<setw(4)<<"Sp"<<setw(4)<<"Att"<<setw(4)<<"Ar"<<setw(5)<<"Kill"<<setw(4)<<"Die";
+	std::cout<<std::setw(6)<<"ID"<<std::setw(4+7)<<"Score"<<std::setw(4)<<"Lv"<<std::setw(5)<<"HP"<<std::setw(6)<<"MaxHP"<<std::setw(4)<<"Sp"<<std::setw(4)<<"Att"<<std::setw(4)<<"Ar"<<std::setw(5)<<"Kill"<<std::setw(4)<<"Die"<<std::endl;
 	for (int i=1;i<=totalplayer;++i)
-		cout<<setw(10)<<player[sequence(i)]->Identifier<<setw(7)<<getscore(sequence[i])<<stew(4)<<player[sequence(i)]->level<<stew(5)<<player[sequence(i)]->hp<<setw(6)<<player[sequence(i)]->maxhp<<setw(4)<<player[sequence(i)]->sp<<setw(4)<<player[sequence(i)]->att<<setw(4)<<player[sequence(i)]->ar<<setw(5)<<player[sequence(i)]->kill<<setw(4)<<player[sequence(i)]->killed;
+		std::cout<<std::setw(10)<<player[sequence[i]]->Identifier<<std::setw(7)<<getscore(sequence[i])<<std::setw(4)<<player[sequence[i]]->level<<std::setw(5)<<player[sequence[i]]->hp<<std::setw(6)<<player[sequence[i]]->maxhp<<std::setw(4)<<player[sequence[i]]->sp<<std::setw(4)<<player[sequence[i]]->att<<std::setw(4)<<player[sequence[i]]->ar<<std::setw(5)<<player[sequence[i]]->kill<<std::setw(4)<<player[sequence[i]]->killed<<std::endl;
+	//std::cout<<"done"<<std::endl;
 }
 
 void env::scoreSort()
 {
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 		t[i]=true;
-	for (int i=1;i<=totalPlayer;++i)
+	for (int i=1;i<=totalplayer;++i)
 	{
 		int dickPlayer=0;
-		for (int j=1;j<=totalPlayer;++j)
+		for (int j=1;j<=totalplayer;++j)
 			if ((t[j])&&((dickPlayer==0)||(getscore(j)>getscore(dickPlayer))))
 				dickPlayer=j;
-		sequence[i]=j;
-		t[j]=false;
+		sequence[i]=dickPlayer;
+		t[dickPlayer]=false;
 	}
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="fishCUI" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/fishCUI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/fishCUI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="TAAI.cpp" />
+		<Unit filename="TAAI.h" />
+		<Unit filename="TAAI_CRAZY.h" />
+		<Unit filename="TAAI_HARD.h" />
+		<Unit filename="TAAI_LUNATIC.h" />
+		<Unit filename="constants.h" />
+		<Unit filename="env.cpp" />
+		<Unit filename="env.h" />
+		<Unit filename="fish.cpp" />
+		<Unit filename="fish.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="st24.cpp" />
+		<Unit filename="st24.h" />
+		<Unit filename="st26.cpp" />
+		<Unit filename="st26.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
