@@ -13,7 +13,7 @@ env& fish::host=syst;
 
 int main()
 {
-    for (int i=0;i<=20;i++) syst.addAI(new TAAI());
+    for (int i=0;i<=10;i++) syst.addAI(new TAAI());
     syst.addAI(new TAAI());
     syst.addAI(new TAAI());
     syst.addAI(new TAAI());
@@ -24,9 +24,9 @@ int main()
     //system.addAI(new TAAI_HARD());
     //system.addAI(new TAAI_HARD());
     syst.addAI(new st26());
-    syst.addAI(new st04());
+    //syst.addAI(new st04());
    // syst.addAI(new st18());
-    syst.addAI(new st24());
+   // syst.addAI(new st24());
     syst.play();
 }
 

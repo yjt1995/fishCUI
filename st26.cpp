@@ -47,8 +47,7 @@ void st26::beginAttack(int i,int j)
 }
 void st26::eatAndAttack()
 {
-	cout<<1<<endl;int x=getX(),y=getY();
-	cout<<1<<endl;
+	int x=getX(),y=getY();
 	for (int i=1;i<=N;++i)
 		for (int j=1;j<=M;++j)
 			if ((abs(x-i)+abs(y-j)<=getSp())&&(kexing(i,j)))

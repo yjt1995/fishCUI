@@ -42,6 +42,8 @@
 		<Unit filename="fish.cpp" />
 		<Unit filename="fish.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="st04.cpp" />
+		<Unit filename="st04.h" />
 		<Unit filename="st24.cpp" />
 		<Unit filename="st24.h" />
 		<Unit filename="st26.cpp" />

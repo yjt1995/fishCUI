@@ -1,19 +1,23 @@
 # depslib dependency file v1.0
-1387362025 source:c:\users\Ò¦¾©èº\documents\github\fishcui\env.cpp
+1387713055 source:c:\users\Ò¦¾©èº\documents\github\fishcui\env.cpp
 	"env.h"
 	"fish.h"
 
-1387201220 c:\users\Ò¦¾©èº\documents\github\fishcui\env.h
+1387705168 c:\users\Ò¦¾©èº\documents\github\fishcui\env.h
 	<cstdlib>
 	<ctime>
 	<iostream>
 	<iomanip>
 	<algorithm>
+	<cstdio>
+	<fstream>
+	<cstring>
+	<windows.h>
 	"constants.h"
 
 1387285207 c:\users\Ò¦¾©èº\documents\github\fishcui\constants.h
 
-1387289666 c:\users\Ò¦¾©èº\documents\github\fishcui\fish.h
+1387680330 c:\users\Ò¦¾©èº\documents\github\fishcui\fish.h
 	<cstring>
 	"constants.h"
 	"env.h"
@@ -21,7 +25,7 @@
 1387196593 source:c:\users\Ò¦¾©èº\documents\github\fishcui\fish.cpp
 	"fish.h"
 
-1387368449 source:c:\users\Ò¦¾©èº\documents\github\fishcui\main.cpp
+1387681712 source:c:\users\Ò¦¾©èº\documents\github\fishcui\main.cpp
 	"env.h"
 	"fish.h"
 	"TAAI.h"
@@ -61,7 +65,7 @@
 	<cstdio>
 	<iostream>
 
-1387363587 source:c:\users\Ò¦¾©èº\documents\github\fishcui\st26.cpp
+1387636264 source:c:\users\Ò¦¾©èº\documents\github\fishcui\st26.cpp
 	"st26.h"
 	<cstdio>
 	<cmath>
